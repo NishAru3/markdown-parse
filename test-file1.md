@@ -1,3 +1,4 @@
-[example]
-extra text to mess it up
-(some-page.html)
+# Title
+
+[a link!](https://something.com)
+[another link!](some-page.html)
