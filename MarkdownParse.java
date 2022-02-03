@@ -10,19 +10,28 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then take up to
         // the next )
         int currentIndex = 0;
-        while(currentIndex < markdown.length()) {
+        while (currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen);
-            if(nextOpenBracket == -1 || nextCloseBracket == -1 || openParen == -1 || closeParen == -1){
-                return toReturn;
+            if (nextOpenBracket == -1) {
+                break;
             }
-            if(openParen == nextCloseBracket + 1){
+            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            if (nextCloseBracket == -1) {
+                break;
+            }
+            int openParen = markdown.indexOf("(", nextCloseBracket);
+            if (openParen == -1) {
+                break;
+            }
+            int closeParen = markdown.indexOf(")", openParen);
+            if (closeParen == -1) {
+                break;
+            }
+            //if the current values yield a link, add it
+            if (openParen - nextCloseBracket == 1) {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
             }
             currentIndex = closeParen + 1;
-            System.out.println(currentIndex);
         }
         return toReturn;
     }
@@ -33,3 +42,5 @@ public class MarkdownParse {
         System.out.println(links);
     }
 }
+
+// Change to test if I can commit and push
