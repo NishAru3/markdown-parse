@@ -18,8 +18,6 @@ public class MarkdownParseTest {
         String contents = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
         List<String> newList = new ArrayList<String>();
-        newList.add("https://something.com");
-        newList.add("some-page.html");
         assertEquals(newList, links);
     }
 }
